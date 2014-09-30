@@ -1,0 +1,2 @@
+class Zip < Attachment
+end
