@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930200538) do
+ActiveRecord::Schema.define(version: 20141006112259) do
 
   create_table "attachments", force: true do |t|
     t.string   "filename"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20140930200538) do
     t.integer  "sender_mailbox_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subject"
+    t.string   "content"
+    t.boolean  "spam",              default: false
   end
 
   create_table "e_mails_mailboxes", force: true do |t|
