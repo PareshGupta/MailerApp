@@ -1,4 +1,5 @@
 class Mailbox < ActiveRecord::Base
+  # FIXME_AK: Do we really need the on option here?
   validate :ensure_score_less_than_maximum, on: [:update, :create]
   has_many :mails, class_name: EMail, foreign_key: 'sender_mailbox_id'
 
@@ -13,6 +14,7 @@ class Mailbox < ActiveRecord::Base
 
 
 # destroy mailbox if there is no spam mails
+# FIXME_AK: Refactor this method.
   def check_for_spam
     if self.e_mails.any? { |email| email.spam == false }
       return false
