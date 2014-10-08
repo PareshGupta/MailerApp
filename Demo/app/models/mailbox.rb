@@ -1,4 +1,5 @@
 class Mailbox < ActiveRecord::Base
+  validate :ensure_score_less_than_maximum, on: [:update, :create]
   has_many :mails, class_name: EMail, foreign_key: 'sender_mailbox_id'
 
   has_and_belongs_to_many :e_mails, foreign_key: 'receiver_mailbox_id'
@@ -10,7 +11,6 @@ class Mailbox < ActiveRecord::Base
 
   before_destroy :check_for_spam
 
-  before_save :
 
 # destroy mailbox if there is no spam mails
   def check_for_spam
@@ -21,5 +21,14 @@ class Mailbox < ActiveRecord::Base
     end
   end
 
+# custom validation for score to be less than maximum score
+  def ensure_score_less_than_maximum
+    max_score = 5
+    if self.score < max_score
+      return true
+    else
+      errors.add(:score, "can't be greater than 5")
+    end
+  end
 
 end
