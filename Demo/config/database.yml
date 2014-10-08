@@ -9,12 +9,12 @@ default: &default
 
 development:
   <<: *default
-  database: depot_development
+  database: mailer_development
 
 test:
   <<: *default
-  database: depot_test
+  database: mailer_test
 
 production:
   <<: *default
-  database: depot_production
+  database: mailer_production
