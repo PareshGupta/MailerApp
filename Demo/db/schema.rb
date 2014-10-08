@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008072922) do
+ActiveRecord::Schema.define(version: 20141008114757) do
 
   create_table "attachments", force: true do |t|
     t.string   "filename"
     t.text     "content"
-    t.integer  "e_mail_id"
-    t.string   "e_mail_type"
+    t.integer  "email_id"
+    t.string   "email_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20141008072922) do
     t.integer  "mailbox_two_id"
   end
 
-  create_table "e_mails", force: true do |t|
+  create_table "emails", force: true do |t|
     t.integer  "sender_mailbox_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -43,9 +43,15 @@ ActiveRecord::Schema.define(version: 20141008072922) do
     t.boolean  "spam",              default: false
   end
 
-  create_table "e_mails_mailboxes", force: true do |t|
-    t.integer "e_mail_id"
+  create_table "emails_mailboxes", force: true do |t|
+    t.integer "email_id"
     t.integer "receiver_mailbox_id"
+  end
+
+  create_table "logs", force: true do |t|
+    t.string   "information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mailboxes", force: true do |t|
@@ -55,11 +61,6 @@ ActiveRecord::Schema.define(version: 20141008072922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score",      default: 0
-  end
-
-  create_table "users", force: true do |t|
-    t.string  "name"
-    t.integer "senior_id_id"
   end
 
 end
