@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20141008114757) do
     t.string   "filename"
     t.text     "content"
     t.integer  "email_id"
-    t.string   "email_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"

@@ -1,5 +1,5 @@
 class Mailbox < ActiveRecord::Base
-  validate :ensure_score_less_than_maximum
+  validates :score, numericality: { only_integer: true, less_than_or_equal_to: 5 }
 
   has_many :mails, class_name: Email, foreign_key: 'sender_mailbox_id'
 
@@ -15,16 +15,6 @@ class Mailbox < ActiveRecord::Base
 # destroy mailbox if there is no non-spam mails
   def destroy_if_no_non_spam_email?
     emails.any? { |email| email.spam == false }
-  end
-
-# custom validation for score to be less than maximum score
-  def ensure_score_less_than_maximum
-    max_score = 5
-    if self.score <= max_score
-      return true
-    else
-      errors.add(:score, "can't be greater than 5")
-    end
   end
 
 end
