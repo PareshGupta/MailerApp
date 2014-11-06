@@ -1,4 +1,5 @@
 class MailboxesController < ApplicationController
+  before_action :authenticate_mailbox!
   before_action :load_mailbox, only: [:edit, :update, :destroy]
 
   def index

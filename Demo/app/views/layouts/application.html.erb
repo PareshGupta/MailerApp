@@ -15,10 +15,19 @@
           <a href="../" class="navbar-brand">MailerApp</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Mailboxes', mailboxes_path %></li>
-            <li><%= link_to 'Emails', emails_path %></li>
-          </ul>
+          <% if mailbox_signed_in? %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to 'New', emails_path %></li>
+              <li><%= link_to 'Inbox', emails_path %></li>
+              <li><%= link_to 'Spam', emails_path %></li>
+              <li><%= link_to 'Contacts', emails_path %></li>
+            </ul>
+          <% end %>
+          <% if mailbox_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete %></li>
+            </ul>
+          <% end %>
         </div>
       </div>
     </div>

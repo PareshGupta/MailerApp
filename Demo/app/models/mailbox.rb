@@ -1,5 +1,7 @@
 # Fixed: added dependent=> :destroy 
 class Mailbox < ActiveRecord::Base
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+
   has_many :mails, class_name: Email, foreign_key: 'sender_mailbox_id', dependent: :destroy
   has_and_belongs_to_many :emails, foreign_key: 'receiver_mailbox_id'
 
@@ -12,12 +14,10 @@ class Mailbox < ActiveRecord::Base
   validates :score, numericality: { only_integer: true, less_than_or_equal_to: 5 }
 
   before_destroy :destroy_if_no_non_spam_email?, prepend: true
-  
+
   private
 # destroy mailbox if there is no non-spam mails
   def destroy_if_no_non_spam_email?
     mails.all? { |mail| mail.spam }
   end
-  
-
 end
