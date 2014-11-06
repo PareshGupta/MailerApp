@@ -8,10 +8,10 @@ class Email < ActiveRecord::Base
   
   validate :count_in_mailbox_less_than_three?, on: :create
   
-  define_model_callbacks :sending
-  before_save :check_count_of_total_recipients_less_than_3?
-  before_save :add_default_subject, if: Proc.new { |mail| mail.subject.nil? }
-  after_create :add_contact
+  # define_model_callbacks :sending
+  # before_save :check_count_of_total_recipients_less_than_3?
+  # before_save :add_default_subject, if: Proc.new { |mail| mail.subject.nil? }
+  # after_create :add_contact
 
 # custom callback
   def sending

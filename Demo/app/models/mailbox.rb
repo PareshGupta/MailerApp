@@ -4,7 +4,7 @@ class Mailbox < ActiveRecord::Base
   has_and_belongs_to_many :emails, foreign_key: 'receiver_mailbox_id'
 
   has_many :contacts_one, class_name: Contact, foreign_key: :mailbox_one_id, dependent: :destroy
-  has_many :mailboxes_one, class_name: Mailbox, through: :contacts_one, source: :mailbox_one
+  has_many :mailboxes_one, class_name: Mailbox, through: :contacts_one, source: :mailbox_oneh
   has_many :contacts_two, class_name: Contact, foreign_key: :mailbox_two_id, dependent: :destroy
   has_many :mailboxes_two, class_name: Mailbox, through: :contacts_two, source: :mailbox_one
   
