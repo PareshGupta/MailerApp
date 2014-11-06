@@ -1,0 +1,34 @@
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="well bs-component">
+        <%= form_for @mailbox, html: { class: "form-horizontal" } do |f| %>
+          <fieldset>
+            <legend>Enter Mailbox details</legend>
+            <div class="form-group">
+              <%= f.label :firstname, 'Firstname:', class: "col-lg-2 control-label" %>
+              <div class="col-lg-10">
+                <%= f.text_field :firstname, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :lastname, 'Lastname:', class: "col-lg-2 control-label" %>
+              <div class="col-lg-10">
+                <%= f.text_field :lastname, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, 'Email:', class: "col-lg-2 control-label" %>
+              <div class="col-lg-10">
+                <%= f.text_field :email, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit %>  
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

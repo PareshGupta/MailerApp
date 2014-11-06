@@ -1,0 +1,38 @@
+<div class="container">
+  <% if notice %>
+      <p><%= notice %></p>
+    <% elsif alert %>
+      <p><%= alert %></p>
+  <% end %>
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bs-component">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr class="info">
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Spam</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @emails.each do |email| %>
+                <tr>
+                  <td><%= email.subject %></td>
+                  <td><%= email.content %></td>
+                  <td><%= email.spam %></td>
+                  <td><%= link_to 'Edit', edit_email_path(email) %></td>
+                  <td><%= link_to 'Destroy', email_path(email), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'New Email', new_email_path %>
+</div>
