@@ -50,7 +50,7 @@ class Email < ActiveRecord::Base
   def add_contact
     mailbox_array = mailboxes
     mailbox_array.each do |mailbox|
-      Contact.create(firstname: mailbox.firstname, lastname: mailbox.lastname, mailbox_one_id: mailbox.id, mailbox_two_id: self.sender_mailbox_id)
+      Contact.create(firstname: mailbox.firstname, lastname: mailbox.lastname, mailbox_one_id: mailbox.id, mailbox_two_id: sender_mailbox_id)
     end
   end
 end
